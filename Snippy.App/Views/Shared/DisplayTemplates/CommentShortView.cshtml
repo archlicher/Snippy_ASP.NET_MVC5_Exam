@@ -1,0 +1,10 @@
+﻿@using System.Globalization
+@model Snippy.App.Models.ViewModels.ConciseCommentViewModel
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h3>@Model.Content</h3>
+        <p>
+            <div><strong><span class="glyphicon glyphicon-user"></span> @Model.Author</strong> on @Model.CreationDate.ToString("dd-MMM-yyyy hh:mm:ss", CultureInfo.InvariantCulture)</div>
+        </p>
+    </div>
+</div>

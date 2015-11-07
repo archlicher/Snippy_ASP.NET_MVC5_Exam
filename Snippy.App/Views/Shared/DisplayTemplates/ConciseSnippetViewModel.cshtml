@@ -1,0 +1,12 @@
+﻿@model Snippy.App.Models.ViewModels.ConciseSnippetViewModel
+<div>
+    <h2>
+        <a href="/Snippets/Details/@Model.Id">@Model.Title</a>
+    </h2>
+    <ul class="nav nav-pills">
+        @foreach (var label in Model.Labels)
+        {
+            @:<li role="presentation" class="active"><a href="/Labels/Details/@label.Id">@label.Text</a></li>
+        }
+    </ul>
+</div>

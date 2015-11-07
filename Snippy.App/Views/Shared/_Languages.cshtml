@@ -1,0 +1,6 @@
+﻿<div class="form-group">
+    @Html.Label("Language", new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownList("LanguageId", (IEnumerable<SelectListItem>)ViewBag.Languages, new { name = "LanguageId" })
+    </div>
+</div>

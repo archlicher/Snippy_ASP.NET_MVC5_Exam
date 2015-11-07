@@ -1,0 +1,48 @@
+﻿@using System.Globalization
+@model Snippy.App.Models.ViewModels.DetailSnippetView
+
+@{
+    ViewBag.Title = "Details";
+}
+<div>
+    <h2>@Html.ActionLink(@Model.Language.Name, "Details", "Languages", new { id = Model.Language.Id }, new { @class = "btn btn-success" }) @Model.Title @Html.ActionLink("Edit", "Edit", "Snippets", new { id = Model.Id }, new { @class = "btn btn-warning" })</h2>
+    <div>
+        <div><strong><span class="glyphicon glyphicon-user"></span> @Model.Author</strong> on @Model.CreationDate.ToString("dd-MMM-yyyy hh:mm:ss", CultureInfo.InvariantCulture)</div>
+        Lables: <ul class="nav nav-pills">
+            @foreach (var label in Model.Labels)
+            {
+                @:
+                <li role="presentation" class="active"><a href="~/Labels/Details/@label.Id">@label.Text</a></li>
+            }
+        </ul>
+        <span>@Model.Description</span>
+        <div class="jumbotron">@Model.Code</div>
+        <h3>Comments:</h3>
+        <p>
+            @if (Model.Comments.Any())
+            {
+                foreach (var comment in Model.Comments)
+                {@:
+                    <div class="jumbotron">
+                        @if (User.Identity.IsAuthenticated && User.Identity.Name == comment.Author)
+                        {
+                            @Html.ActionLink("X", "Details", "Comments", new { id = comment.Id }, new {@class ="pull-right"})
+                        }
+                        <div>@comment.Content</div>
+                        <div><strong><span class="glyphicon glyphicon-user"></span> @comment.Author</strong> on @comment.CreationDate.ToString("dd-MMM-yyyy hh:mm:ss", CultureInfo.InvariantCulture)</div>
+                    </div>
+                }
+            }
+            else
+            {
+                @:<span>There are no comments right now.</span>
+            }
+        </p>
+        <p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Add comment", "Create", "Comments", new { id = Model.Id }, new { @class = "btn btn-success" })
+            }
+        </p>
+    </div>
+</div>

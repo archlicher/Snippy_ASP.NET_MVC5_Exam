@@ -1,0 +1,12 @@
+﻿@model Snippy.App.Models.ViewModels.LabelDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>All snippets with label <a href="/Labels/Details/@Model.Id" class="btn btn-success">@Model.Text</a></h4>
+    <div>
+        @Html.DisplayFor(x => x.Snippets)
+    </div>
+</div>
